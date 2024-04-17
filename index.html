@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logistica</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+</head>
+<body>
+    <body>
+    <div class="header-container">
+        <header>
+            <h1>Gestión de Rutas</h1>
+        </header>
+    </div>
+    <div class="container">
+    <div id="TituloOrden">
+        <h2>Selección de Orden</h2>
+    </div>
+        <center><label for="orderSelect">Seleccionar Orden:</label>
+        <center><select id="orderSelect" onchange="displayOrder()">
+            <center><option value="">Selecciona Orden</option>
+        </select>
+
+        <div id="orderDetails">
+            <div id="TituloOrden">
+            <h2>Detalles de Orden</h2>
+        </div>
+            <p><strong>Nombre de Cliente:</strong> <span id="clientName"></span></p>
+            <p><strong>Nombre Comercial:</strong> <span id="commercialName"></span></p>
+            <p><strong>Estado del Cliente:</strong> <span id="clientState"></span></p>
+
+            <table id="productTable">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio Unitario</th>
+                        <th>Cantidad</th>
+                        <th>Peso Unitario (kg)</th>
+                        <th>Peso Total (kg)</th>
+                    </tr>
+                </thead>
+                <tbody id="productTableBody"></tbody>
+            </table>
+
+            <div class="total-container">
+                <p><strong>Total de Productos:</strong> <span id="totalProducts"></span></p>
+                <p><strong>Total con Descuento:</strong> $<span id="totalWithDiscount"></span></p>
+                <p><strong>Peso Total:</strong> <span id="totalWeight"></span> kg</p>
+            </div>
+            <div class="containervehicle">
+      <p>Vehículo Seleccionado para la Orden: <span id="selectedVehicle">Ninguno</span></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="contenedor">
+    <form id="formCliente" style="margin-top: 20px;">
+        <h2>Agregar Nuevo Cliente</h2>
+        <div class="form-container">
+    <div class="form-row">
+        <label for="nombreClienteInput">Nombre del Cliente:</label>
+        <input type="text" id="nombreClienteInput" required>
+    </div>
+    <div class="form-row">
+        <label for="coordenadasInput">Coordenadas:</label>
+        <input type="text" id="coordenadasInput" placeholder="Ej: 19.432683 -99.133292" required>
+    </div>
+    <button type="submit" id="agregarClienteButton">Agregar Cliente</button>
+    </div>
+        <p id="mensajeError" style="color: red; display: none;">El cliente ya está registrado.</p>
+    </form>
+</div>
+
+<h2>Lista de Clientes</h2>
+
+    <div id="clienteSelectContainer"></div>
+
+    <button id="addLocationButton">Agregar Ubicación</button>
+    </div>
+    <div class="ContenedorRuta">
+    <h2>Generar Link De Ruta</h2>
+    <button id="generate-link">Generar Link</button>
+    <div id="link-container"></div>
+  </div>
+
+<div class="contenedorMaps">
+        <h2>Consultar Coordenadas en Google Maps</h2>
+        <form id="coordinatesForm">
+            <label for="latitude">Latitud:</label>
+            <input type="text" id="latitude" placeholder="Ej. 21.847389" required><br><br>
+            <label for="longitude">Longitud:</label>
+            <input type="text" id="longitude" placeholder="Ej. -102.718833" required><br><br>
+            <button type="submit">Consultar en Maps</button>
+        </form>
+    </div>
+    <footer>
+  <p>&copy; 2024 Procesadora de Alimentos HGR</p>
+</footer>
+    <script src="script.js"></script>
+</body>
+</html>

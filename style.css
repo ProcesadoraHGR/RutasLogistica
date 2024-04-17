@@ -1,0 +1,423 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.header-container {
+    background-color: #333;
+    width: 100%;
+}
+
+.header-container header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+}
+
+.header-container header h1 {
+    color: white;
+    font-size: 25px;
+    margin: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    width: 100%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    background-color: #f9f9f9;
+}
+
+/* Estilos para el contenedor del título */
+#TituloOrden {
+    text-align: center; /* Alinear el texto al centro */
+    margin-bottom: 20px; /* Margen inferior */
+}
+
+/* Estilos para el título h2 */
+#TituloOrden h2 {
+    font-size: 24px; /* Tamaño de fuente */
+    color: #333; /* Color del texto (azul brillante) */
+    border-bottom: 2px solid #333; /* Borde inferior azul */
+    padding-bottom: 5px; /* Relleno inferior */
+}
+
+
+select, table {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+/* Estilos para el contenedor del texto "Seleccionar Orden:" */
+.orderLabel {
+    font-weight: bold; /* Texto en negrita */
+    margin-bottom: 10px; /* Margen inferior */
+}
+
+/* Estilos para la pestaña desplegable (select) */
+#orderSelect {
+    width: 300px; /* Ancho del select */
+    padding: 8px; /* Relleno interno */
+    font-size: 14px; /* Tamaño de fuente */
+    border: 1px solid #ccc; /* Borde con color gris claro */
+    border-radius: 4px; /* Borde redondeado */
+    box-sizing: border-box; /* Incluir el borde en el tamaño total del elemento */
+    appearance: none; /* Ocultar la apariencia nativa del select */
+    background-color: #fff; /* Color de fondo */
+    background-image: linear-gradient(to bottom, #f9f9f9, #e9e9e9); /* Gradiente de fondo */
+    cursor: pointer; /* Cambiar el cursor al seleccionar */
+}
+
+/* Estilos para el contenedor del select */
+.orderSelectContainer {
+    margin-bottom: 20px; /* Margen inferior */
+}
+
+
+/* Estilos para el input de peso unitario */
+input[type="number"] {
+    width: 80px; /* Ancho del input */
+    padding: 8px; /* Relleno interno */
+    border: 1px solid #ccc; /* Borde con color gris claro */
+    border-radius: 4px; /* Borde redondeado */
+    box-sizing: border-box; /* Incluir el borde en el tamaño total del elemento */
+    font-size: 14px; /* Tamaño de fuente */
+}
+
+.total-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 20px;
+}
+
+.total-container p {
+    margin-left: 0;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Estilos para el contenedor del mensaje de vehículo seleccionado */
+.containervehicle {
+    background-color: #f0f0f0; /* Color de fondo */
+    padding: 10px; /* Espaciado interno */
+    border-radius: 8px; /* Borde redondeado */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra */
+    margin-top: 20px; /* Margen superior */
+    text-align: center; /* Alineación del texto al centro */
+}
+
+/* Estilos para el texto del vehículo seleccionado */
+#selectedVehicle {
+    font-weight: bold; /* Texto en negrita */
+    color: #007bff; /* Color del texto */
+    font-size: 18px; /* Tamaño de fuente */
+}
+
+
+    #formCliente {
+      max-width: 800px;
+      width: 100%;
+    }
+
+    #clienteSelectContainer {
+      /* Estilos personalizados para el elemento con ID clienteSelectContainer */
+      max-width: 250px; /* Ancho máximo del contenedor */
+      width: 100%; /* Ancho completo del contenedor */
+      text-align: center; /* Centra el contenido dentro del contenedor */
+      margin-bottom: 5px; /* Espacio hacia abajo entre contenedores */
+      padding: 15px; /* Espacio interno */
+      background-color: #f2f2f2; /* Color de fondo */
+      border: 1px solid #ccc; /* Borde */
+      border-radius: 8px; /* Borde redondeado */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    }
+
+    /* Estilos para el texto dentro de clienteSelectContainer */
+    #clienteSelectContainer h2 {
+        text-align: center; /* Centrar el texto */
+        font-size: 20px; /* Tamaño de fuente */
+        color: #007bff; /* Color del texto */
+        margin-bottom: 10px; /* Espacio inferior */
+    }
+
+    #clienteSelectContainer p {
+        font-size: 16px; /* Tamaño de fuente */
+        color: #333; /* Color del texto */
+        line-height: 1.5; /* Altura de línea */
+    }
+
+
+    #addLocationButton {
+        max-width: 300px; /* Ancho máximo del botón */
+        width: 100%; /* Ancho completo del botón */
+        margin: 0 auto; /* Margen automático para centrar horizontalmente */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px; /* Espacio hacia arriba entre contenedores */
+    }
+.contenedor {
+    display: flex;
+    justify-content: center; /* Centrado horizontal */
+    align-items: center; /* Centrado vertical */
+    height: 30vh; /* Opcional: ajusta la altura al tamaño de la ventana */
+}
+
+/* Estilos adicionales para el formulario */
+#formCliente {
+    text-align: center; /* Alineación del texto centrada */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+#agregarClienteButton {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    padding: 10px 20px;
+    max-width: 200px;
+    display: block; /* Convertir el botón en un elemento de bloque */
+    margin: 0 auto; /* Centrar horizontalmente */
+}
+
+
+
+.contenedorMaps {
+    text-align: center;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px; /* Espacio hacia arriba entre contenedores */
+}
+
+form {
+    display: inline-block;
+}
+
+input[type="text"] {
+    padding: 8px;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.ContenedorRuta {
+      /* Estilos personalizados para el elemento con ID clienteSelectContainer */
+      max-width: 250px; /* Ancho máximo del contenedor */
+      width: 100%; /* Ancho completo del contenedor */
+      text-align: center; /* Centra el contenido dentro del contenedor */
+      margin-bottom: 5px; /* Espacio hacia abajo entre contenedores */
+      margin-top: 25px; /* Espacio hacia arriba entre contenedores */
+      padding: 15px; /* Espacio interno */
+      background-color: #f2f2f2; /* Color de fondo */
+      border: 1px solid #ccc; /* Borde */
+      border-radius: 8px; /* Borde redondeado */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    }
+#generate-link {
+    margin-top: 15px; /* Separación desde la parte superior */
+    margin-bottom: 5px; /* Separación desde la parte inferior */
+    padding: 10px 20px; /* Espacio interno alrededor del botón */
+    max-width: 200px; /* Ancho máximo del botón */
+}
+#link-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#link-container button {
+    margin-bottom: 10px; /* Espacio entre los botones */
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    background-color: #007bff; /* Azul predeterminado */
+    color: #fff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#link-container button:hover {
+    background-color: #28a745; /* Cambio de color a verde al pasar el mouse */
+}
+
+
+/* Footer Styles */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px 0;
+  width: 100%;
+  height: 20px; /* Altura de la barra */
+  text-align: center;
+  font-size: 14px;
+  margin-top: 20px; /* Espacio hacia arriba entre contenedores */
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px; /* Ancho máximo del formulario */
+    margin: 0 auto; /* Centrar horizontalmente */
+}
+
+/* Estilos para cada fila del formulario */
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px; /* Espacio entre cada fila */
+}
+
+/* Estilos para las etiquetas del formulario */
+label {
+    flex: 1; /* Ocupar el espacio disponible */
+    margin-right: 10px; /* Espacio a la derecha de la etiqueta */
+}
+
+/* Estilos para los campos de entrada del formulario */
+input[type="text"] {
+    flex: 2; /* Ocupar más espacio que la etiqueta */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Estilos para el botón del formulario */
+button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 768px) {
+    .container {
+        width: auto; /* Asegura que los contenedores ocupen el ancho completo en dispositivos móviles */
+        padding: 10px;
+        margin: 10px auto; /* Ajustar el margen para dispositivos móviles */
+
+    }
+        /* Ajustar el tamaño de la tabla */
+    table {
+        width: 100%;
+        overflow-x: auto; /* Permitir desplazamiento horizontal en dispositivos pequeños */
+    }
+
+    /* Ajustar los estilos de las celdas (th, td) */
+    th, td {
+        padding: 6px; /* Reducir el relleno en dispositivos móviles */
+        font-size: 12px; /* Reducir el tamaño de fuente en dispositivos móviles */
+    }
+
+    /* Ajustar el tamaño de la fuente del título h2 */
+    #TituloOrden h2 {
+        font-size: 20px; /* Reducir el tamaño de fuente del título en dispositivos móviles */
+    }
+
+    /* Ajustar el ancho del select en dispositivos móviles */
+    #orderSelect {
+        width: 100%; /* Ocupar todo el ancho disponible */
+    }
+
+    /* Ajustar el tamaño de la casilla de peso unitario en dispositivos móviles */
+    input[type="number"] {
+        width: 70px; /* Reducir el ancho del input en dispositivos móviles */
+        font-size: 12px; /* Reducir el tamaño de fuente en dispositivos móviles */
+    }
+}
+    .header-container header {
+        height: 80px; /* Ajusta la altura del encabezado para dispositivos móviles */
+    }
+
+    .header-container header h1 {
+        font-size: 20px; /* Reducir el tamaño del texto del encabezado para dispositivos móviles */
+    }
+    .contenedor {
+        width: 90%; /* Asegura que los contenedores ocupen el ancho completo en dispositivos móviles */
+        padding: 10px;
+        margin: 10px auto; /* Ajustar el margen para dispositivos móviles */
+        margin-bottom: 30px;
+        margin-top: 30px; /* Espacio entre cada fila */
+    }
+    /* Ajustes para el formulario */
+    .form-container {
+        max-width: 300px; /* Ancho máximo del formulario */
+        margin: 0 auto; /* Centrar horizontalmente */
+    }
+
+    /* Estilos para cada fila del formulario */
+    .form-row {
+        flex-direction: column; /* Cambia a disposición de columna en dispositivos móviles */
+        align-items: flex-start; /* Alinear elementos a la izquierda en dispositivos móviles */
+        margin-bottom: 15px; /* Espacio entre cada fila */
+    }
+
+    /* Estilos para los campos de entrada del formulario en dispositivos móviles */
+    input[type="text"] {
+        width: 100%; /* Ocupar todo el ancho disponible */
+        margin-top: 5px; /* Espacio arriba del campo de entrada */
+    }
+
+    /* Estilos para el botón del formulario en dispositivos móviles */
+    button {
+        width: 100%; /* Ocupar todo el ancho disponible */
+    }
+
+}
