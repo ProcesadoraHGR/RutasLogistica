@@ -286,55 +286,116 @@ window.onload = function() {
         crearNuevaSesionCliente();
     });
 
+    // Inicializar el mapa
+    var map = L.map('map').setView([23.6345, -102.5528], 6);
+
+    // Agregar la capa de mosaico
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Agregar el control de enrutamiento
+    var control = L.Routing.control({
+        waypoints: [],
+        routeWhileDragging: true,
+        geocoder: L.Control.Geocoder.nominatim(),
+        reverseWaypoints: true,
+        showAlternatives: true,
+        lineOptions: {
+            styles: [{ color: 'blue', weight: 4, opacity: 0.7 }]
+        },
+        altLineOptions: {
+            styles: [{ color: 'gray', weight: 2, opacity: 0.5 }]
+        }
+    }).addTo(map);
+
+    // Evento para generar la ruta con Leaflet Routing Machine
+document.getElementById('generate-route').addEventListener('click', () => {
+    const clienteDataContainers = document.querySelectorAll('.datosCliente');
+    const waypoints = [];
+
+    clienteDataContainers.forEach(dataContainer => {
+        const coordenadasElement = dataContainer.querySelector('#coordenadasCliente');
+        if (coordenadasElement) {
+            const coordenadas = coordenadasElement.textContent.trim();
+            if (coordenadas) {
+                waypoints.push(L.latLng(coordenadas.split(',')));
+            }
+        }
+    });
+
+    // Establecer los waypoints en el control de enrutamiento
+    control.setWaypoints(waypoints);
+});
+
     // Crear la sección inicial de datos del cliente
     crearNuevaSesionCliente();
 
-    // Evento para calcular y mostrar la ruta en Google Maps
-    document.getElementById('generate-link').addEventListener('click', () => {
-        const clienteDataContainers = document.querySelectorAll('.datosCliente');
+// Evento para calcular y mostrar la ruta en Google Maps
+document.getElementById('generate-route').addEventListener('click', () => {
+    const clienteDataContainers = document.querySelectorAll('.datosCliente');
 
-        let googleMapsLink = 'https://www.google.com/maps/dir/?api=1&travelmode=driving';
+    let googleMapsLink = 'https://www.google.com/maps/dir/?api=1&travelmode=driving';
 
-        const waypoints = [];
+    const waypoints = [];
 
-        clienteDataContainers.forEach(dataContainer => {
-            const coordenadasElement = dataContainer.querySelector('#coordenadasCliente');
-            if (coordenadasElement) {
-                const coordenadas = coordenadasElement.textContent.trim();
-                if (coordenadas) {
+    // Variables para manejar la primera ubicación como partida y las demás como waypoints
+    let isFirstLocation = true;
+    let firstLocation = '';
+
+    clienteDataContainers.forEach(dataContainer => {
+        const coordenadasElement = dataContainer.querySelector('#coordenadasCliente');
+        if (coordenadasElement) {
+            const coordenadas = coordenadasElement.textContent.trim();
+            if (coordenadas) {
+                if (isFirstLocation) {
+                    // La primera ubicación se establece como el origen (partida)
+                    firstLocation = encodeURIComponent(coordenadas);
+                    isFirstLocation = false;
+                } else {
+                    // Las ubicaciones restantes se agregan como waypoints
                     waypoints.push(encodeURIComponent(coordenadas));
                 }
             }
-        });
-
-        if (waypoints.length > 0) {
-            googleMapsLink += `&waypoints=${waypoints.join('|')}`;
         }
-
-        // Eliminar el contenido previo de linkContainer
-        const linkContainer = document.getElementById('link-container');
-        linkContainer.innerHTML = '';
-
-        // Crear un botón dinámico para abrir la ruta en Google Maps
-        const openMapButton = document.createElement('button');
-        openMapButton.textContent = 'Abrir Ruta en Google Maps';
-        openMapButton.addEventListener('click', () => {
-            window.open(googleMapsLink, '_blank');
-        });
-
-        // Crear un botón dinámico para compartir la ruta por WhatsApp
-        const shareWhatsAppButton = document.createElement('button');
-        shareWhatsAppButton.textContent = 'Compartir en WhatsApp';
-        shareWhatsAppButton.addEventListener('click', () => {
-            const encodedMessage = encodeURIComponent(`¡Te comparto esta ruta en Google Maps!\n${googleMapsLink}`);
-            const whatsappUrl = `https://wa.me/?text=${encodedMessage}`;
-            window.open(whatsappUrl, '_blank');
-        });
-
-        // Agregar los botones al contenedor
-        linkContainer.appendChild(openMapButton);
-        linkContainer.appendChild(shareWhatsAppButton);
     });
+
+    // Construir el enlace de Google Maps con la estructura correcta
+    if (firstLocation) {
+        googleMapsLink += `&origin=${firstLocation}`;
+    }
+
+    if (waypoints.length > 0) {
+        googleMapsLink += `&waypoints=${waypoints.join('|')}`;
+    }
+
+    // Eliminar el contenido previo de linkContainer
+    const linkContainer = document.getElementById('route-container');
+    linkContainer.innerHTML = '';
+
+    // Crear un botón dinámico para abrir la ruta en Google Maps
+    const openMapButton = document.createElement('button');
+    openMapButton.textContent = 'Abrir Ruta en Google Maps';
+    openMapButton.classList.add('dynamic-button'); // Agregar la clase CSS
+    openMapButton.addEventListener('click', () => {
+        window.open(googleMapsLink, '_blank');
+    });
+
+    // Crear un botón dinámico para compartir la ruta por WhatsApp
+    const shareWhatsAppButton = document.createElement('button');
+    shareWhatsAppButton.textContent = 'Compartir en WhatsApp';
+    shareWhatsAppButton.classList.add('dynamic-button'); // Agregar la clase CSS
+    shareWhatsAppButton.addEventListener('click', () => {
+        const encodedMessage = encodeURIComponent(`¡Te comparto esta ruta en Google Maps!\n${googleMapsLink}`);
+        const whatsappUrl = `https://wa.me/?text=${encodedMessage}`;
+        window.open(whatsappUrl, '_blank');
+    });
+
+    // Agregar los botones al contenedor
+    linkContainer.appendChild(openMapButton);
+    linkContainer.appendChild(shareWhatsAppButton);
+});
+
 
     // Evento para abrir Google Maps con coordenadas
     document.getElementById('coordinatesForm').addEventListener('submit', function(event) {
@@ -355,3 +416,75 @@ window.onload = function() {
         window.open(googleMapsUrl, '_blank');
     });
 };
+
+
+async function captureAndDownloadCombinedImage() {
+    const mapElement = document.getElementById('map');
+    const detailsOrderElement = document.getElementById('orderDetails');
+
+    try {
+        // Capture the map and order details as separate images
+        const [mapImage, detailsImage] = await Promise.all([
+            domtoimage.toPng(mapElement),
+            domtoimage.toPng(detailsOrderElement),
+        ]);
+
+        // Create a canvas for the combined image
+        const combinedCanvas = document.createElement('canvas');
+        const ctx = combinedCanvas.getContext('2d');
+
+        // Create image objects from the captured images
+        const mapImg = new Image();
+        const detailsImg = new Image();
+
+        // Set the image sources and wait for them to load
+        mapImg.src = mapImage;
+        detailsImg.src = detailsImage;
+        await Promise.all([
+            new Promise((resolve) => (mapImg.onload = resolve)),
+            new Promise((resolve) => (detailsImg.onload = resolve)),
+        ]);
+
+        // Calculate the maximum width and height for the combined canvas
+        const maxWidth = Math.max(mapImg.width, detailsImg.width);
+        const totalHeight = mapImg.height + detailsImg.height + 100; // Add 100 pixels of separation
+
+        // Set the size of the combined canvas with some padding
+        const padding = 20;
+        combinedCanvas.width = maxWidth + padding * 2;
+        combinedCanvas.height = totalHeight + padding * 2;
+
+        // Fill the background with white color
+        ctx.fillStyle = 'white';
+        ctx.fillRect(0, 0, combinedCanvas.width, combinedCanvas.height);
+
+        // Calculate the center position for the map
+        const centerX = combinedCanvas.width / 2;
+        const mapY = padding + detailsImg.height + 100; // Add 100 pixels of separation
+
+        // Draw the order details on the combined canvas (already centered)
+        ctx.drawImage(detailsImg, centerX - detailsImg.width / 2, padding);
+
+        // Draw the map a few pixels to the right of the center
+        const mapOffsetX = 50; // Adjust this value to move the map more or less to the right
+        ctx.drawImage(mapImg, centerX - mapImg.width / 2 + mapOffsetX, mapY);
+
+        // Convert the combined canvas to a blob and download as an image
+        combinedCanvas.toBlob((blob) => {
+            const downloadLink = document.createElement('a');
+            downloadLink.href = URL.createObjectURL(blob);
+            downloadLink.download = 'mapa_con_detalles.png';
+            downloadLink.click();
+
+            URL.revokeObjectURL(downloadLink.href);
+        }, 'image/png');
+    } catch (error) {
+        console.error('Error al capturar el mapa con detalles de la orden:', error);
+    }
+}
+
+// Evento para capturar el mapa y los detalles de la orden al hacer clic en el botón "BotonGuardar"
+document.getElementById('BotonGuardar').addEventListener('click', () => {
+    // Capturar el mapa y los detalles de la orden y descargarlos como una imagen combinada
+    captureAndDownloadCombinedImage();
+});
