@@ -8,6 +8,10 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <script src="https://cdn.jsdelivr.net/npm/dom-to-image/dist/dom-to-image.min.js"></script>
 </head>
 <body>
     <body>
@@ -82,11 +86,13 @@
     <button id="addLocationButton">Agregar Ubicación</button>
     </div>
     <div class="ContenedorRuta">
-    <h2>Generar Link De Ruta</h2>
-    <button id="generate-link">Generar Link</button>
-    <div id="link-container"></div>
+    <div id="map"></div>
+    <div id="controls">
+    <h2>Generar Ruta</h2>
+    <button id="generate-route">Generar</button>
+    <div id="route-container"></div>
   </div>
-
+</div>
 <div class="contenedorMaps">
         <h2>Consultar Coordenadas en Google Maps</h2>
         <form id="coordinatesForm">
@@ -94,12 +100,20 @@
             <input type="text" id="latitude" placeholder="Ej. 21.847389" required><br><br>
             <label for="longitude">Longitud:</label>
             <input type="text" id="longitude" placeholder="Ej. -102.718833" required><br><br>
-            <button type="submit">Consultar en Maps</button>
+            <button type="submit">Consultar</button>
         </form>
     </div>
+</div>
+<div class="contenedorguardar">
+    <h2>Guardar Información de Ruta</h2>
+<button id="BotonGuardar">Capturar Información</button>
+</div>
     <footer>
   <p>&copy; 2024 Procesadora de Alimentos HGR</p>
 </footer>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
