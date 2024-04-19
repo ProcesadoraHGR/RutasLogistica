@@ -9,9 +9,17 @@ body {
     min-height: 100vh;
     background-color: #f0f0f0;
 }
+#map {
+            height: 600px;
+            width: 100%;
+        }
+#controls {
+            margin-top: 10px;
+        }
 
+/* Estilos para el encabezado */
 .header-container {
-    background-color: #333;
+    background-color: #0f2b46;
     width: 100%;
 }
 
@@ -213,13 +221,62 @@ input[type="number"] {
 
 
 .contenedorMaps {
-    text-align: center;
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 20px; /* Espacio hacia arriba entre contenedores */
+  max-width: 900px;
+  width: 100%;
+  max-height: 300px;
+  text-align: center;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
+
+#coordinatesForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+#coordinatesForm label {
+  width: 100px;
+  text-align: right;
+  margin-right: 15px;
+  font-weight: bold;
+  color: #333333;
+}
+
+#coordinatesForm input {
+  width: 150px;
+  padding: 10px;
+  margin-right: 15px;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+#coordinatesForm button {
+  width: 150px;
+  padding: 12px;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#coordinatesForm button:hover {
+  background-color: #0056b3;
+}
+
+
 
 form {
     display: inline-block;
@@ -249,7 +306,7 @@ button:hover {
 
 .ContenedorRuta {
       /* Estilos personalizados para el elemento con ID clienteSelectContainer */
-      max-width: 250px; /* Ancho máximo del contenedor */
+      max-width: 900px; /* Ancho máximo del contenedor */
       width: 100%; /* Ancho completo del contenedor */
       text-align: center; /* Centra el contenido dentro del contenedor */
       margin-bottom: 5px; /* Espacio hacia abajo entre contenedores */
@@ -260,19 +317,28 @@ button:hover {
       border-radius: 8px; /* Borde redondeado */
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
     }
-#generate-link {
+
+#generate-route {
     margin-top: 15px; /* Separación desde la parte superior */
     margin-bottom: 5px; /* Separación desde la parte inferior */
     padding: 10px 20px; /* Espacio interno alrededor del botón */
     max-width: 200px; /* Ancho máximo del botón */
 }
-#link-container {
+
+.dynamic-button {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    padding: 10px 20px;
+    max-width: 200px;
+}
+
+#route-container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-#link-container button {
+#route-container button {
     margin-bottom: 10px; /* Espacio entre los botones */
     padding: 10px 20px;
     border: none;
@@ -283,7 +349,7 @@ button:hover {
     transition: background-color 0.3s ease;
 }
 
-#link-container button:hover {
+#route-container button:hover {
     background-color: #28a745; /* Cambio de color a verde al pasar el mouse */
 }
 
@@ -420,4 +486,26 @@ button:hover {
         width: 100%; /* Ocupar todo el ancho disponible */
     }
 
+}
+.contenedorguardar {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+#BotonGuardar {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#BotonGuardar:hover {
+    background-color: #45a049;
 }
